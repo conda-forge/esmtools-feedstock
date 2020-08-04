@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv --no-deps"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
@@ -33,17 +33,21 @@ requirements:
 
 test:
   imports:
-    - esmtools 
+    - esmtools
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: http://github.com/bradyrx/esmtools
   license: MIT
   license_family: MIT
   license_file: LICENSE.txt
-  summary: 'a toolbox for Earth System Model analysis'
+  summary: a toolbox for Earth System Model analysis
   doc_url: http://esmtools.readthedocs.io/
   dev_url: https://github.com/bradyrx/esmtools
 
 extra:
   recipe-maintainers:
-    - bradyrx 
+    - bradyrx
