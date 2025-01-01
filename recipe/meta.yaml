@@ -6,22 +6,22 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: f1e261c0873f50a12dba9c2f1c7fce4df46ca7bb70af158fbe027aa98bfa653d
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
-    - python >3.6
+    - python {{ python_min }}
     - pip
     - setuptools_scm
     - setuptools_scm_git_archive
   run:
-    - python >3.6
+    - python >={{ python_min }}
     - cftime
     - matplotlib-base
     - numpy
@@ -36,6 +36,7 @@ test:
     - esmtools
   requires:
     - pip
+    - python {{ python_min }}
   commands:
     - pip check
 
